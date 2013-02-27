@@ -149,3 +149,26 @@ function mapReduce(threads,incremental){
 	};
 	return _this;
 }
+function quickWorker(fun,callback){
+	var w = {};
+	w.callback=callback;
+	w.worker = new Worker(URL.createObjectURL(new Blob(['var func='+fun.toString()+';\
+				self.onmessage=function(event){\
+					self.postMessage(func(event.data));\
+				}'],{type: "text/javascript"})));
+	w.worker.onmessage=function(e){
+		callback(null,e);
+	};
+	w.worker.onerror=function(e){
+		callback(e);
+	};
+	w.send=function(data){
+		w.worker.postMessage(data);
+		return w;
+	};
+	w.close = function(){
+		w.worker.terminate();
+		return;
+	};
+	return w;
+}
