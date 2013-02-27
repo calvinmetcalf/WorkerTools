@@ -21,3 +21,30 @@ mr.fetch(true for latter);
 ```
 
 * quickWorker(function, callback) creates a worker, when you call it's .send(data) method it sends that to the worker, and call the callback with the result, callback uses node conventions of callback(error, result);
+
+
+# Promises!!!!
+
+the workerPromise file has promise version requires [rsvp.js](https://github.com/tildeio/rsvp.js), havn't bothered to test them all but quickWorker:
+
+```JavaScript
+var x = function(y){return y*y}
+var t = quickWorker(x);
+[0,1,2,3,4,5,6,7,8,9,10].map(function(v,i){
+	return t.send(v).then(function(r){
+		console.log(i+","+r)
+	});
+});
+```
+prints:
+0,0
+1,1
+2,4
+3,9
+4,16
+5,25
+6,36
+7,49
+8,64
+9,81
+10,100
