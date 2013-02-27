@@ -1,18 +1,7 @@
-# README for a newly created project.
+# Worker tools
 
-There are a couple of things you should do first, before you can use all of Git's power:
+A collection of useful snipits for using workers including
 
-  * Add a remote to this project: in the Cloud9 IDE command line, you can execute the following commands
-    `git remote add [remote name] [remote url (eg. 'git@github.com:/ajaxorg/node_chat')]` [Enter]
-  * Create new files inside your project
-  * Add them to to Git by executing the following command
-    `git add [file1, file2, file3, ...]` [Enter]
-  * Create a commit which can be pushed to the remote you just added
-    `git commit -m 'added new files'` [Enter]
-  * Push the commit the remote
-    `git push [remote name] master` [Enter]
-
-That's it! If this doesn't work for you, please visit the excellent resources from [Github.com](http://help.github.com) and the [Pro Git](http://http://progit.org/book/) book.
-If you can't find your answers there, feel free to ask us via Twitter (@cloud9ide), [mailing list](groups.google.com/group/cloud9-ide) or IRC (#cloud9ide on freenode).
-
-Happy coding!
+* getPath(reletiveUrl) it returns an absolute url
+* backgroundAjax(url,callback,after,notjson) creates a worker which downloads the specified url and then calls the callback with it, if after is specified then before sending it back the worker calls that function on the data, if notjson is false or undefined it's prased as json set it to true to get raw text.
+* mapReduce(threads,incremental).map(mapFunc).reduce(reduceFunc).data(dataArray).callback(callbackFunction).fetch(latter?); performs multithread map reduce this needs more documentation.
